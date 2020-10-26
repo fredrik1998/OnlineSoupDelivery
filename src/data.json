@@ -1,0 +1,78 @@
+{
+    "products": [
+      {
+        "_id": "soup1",
+        "image": "/images/soup1.jpg",
+        "title": "Mushroom Soup",
+        "option": ["Vegan","All"],
+        "description": "A rich mushroom soup.",
+        "ingredients": "Onion, Garlic, Water, Mushroom,Oatcream,Vegetable broth, Carrots,Corriander,Parsley",
+        "price": 129
+      },
+      {
+        "_id": "soup2",
+        "image": "/images/soup2.jpg",
+        "title": "Gazpacho",
+        "option": ["Vegan","All"],
+        "description": "A cold soup with raw vegetables",
+        "ingredients": "Bread, Olive oil,Vinegar,Garlic,Tomato,Cucumber",
+        "price": 119
+      },
+      {
+        "_id": "soup3",
+        "image": "/images/soup3.jpg",
+        "title": "Pea Soup",
+        "option": ["All"],
+        "description": "A traditional pea soup", 
+        "ingredients": "Peas, Onion, Garlic, Cream, Chicken stock",
+        "price": 129
+      },
+      {
+        "_id": "soup4",
+        "image": "/images/soup4.jpg",
+        "title": "Potato and Leek Soup",
+        "option": ["All"],
+        "description": "A creamy soup with potatoes and leek",
+        "ingredients": "Potato, Leek, Garlic, Cream, Chicken broth ",
+        "price": 109
+      },
+      {
+        "_id": "soup5",
+        "image": "/images/soup5.jpg",
+        "title": "Pumpkin Soup",
+        "option": ["Vegan","All"],
+        "description": "A soup made from a purée of pumpkin",
+        "ingredients": "Pumpkin, Onion, Vegetable stock, Olive oil",
+        "price": 139
+      },
+      {
+        "_id": "soup6",
+        "image": "/images/soup6.jpg",
+        "title": "Tomato Soup",
+        "option": ["Vegan","All"],
+        "description": "A rich tomato soup",
+        "ingredients": "Tomatoes, Tomato paste, Onion, Cannellini beans, Basil leaves, Vegetable broth",
+        "price": 109
+      },
+
+      {
+        "_id": "soup7",
+        "image": "/images/soup7.jpg",
+        "title": "Cream of Asparagus Soup",
+        "option": ["All"],
+        "description": "A creamy asparagus soup",
+        "ingredients": "Asparagus, Garlic, Cream, Butter, Chicken broth, Fresh dill",
+        "price": 129
+      },
+
+      {
+        "_id": "soup8",
+        "image": "/images/soup8.jpg",
+        "title": "Vegetable and Meat Soup",
+        "option": ["All"],
+        "description": "A meaty and thick vegetable and meat soup",
+        "ingredients": "Top sirloin, Olive oil, Onion, Carrots, Celery, Garlic, Canned Tomatoes, Fresh herbs. ",
+        "price": 149
+      }
+    ]
+  }
