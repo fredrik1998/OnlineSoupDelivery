@@ -5,7 +5,7 @@ Online Soup Delivery is an application in which you can order soups to yourself 
 ## Built With
 - React - The web framework used.
 - Node and Mongo DB - Used for backend.
-- React Redux  - The main react libary used.
+- React Redux  - The main react library used.
 
 ### `Instructions`
 1. npm run server (backend)
