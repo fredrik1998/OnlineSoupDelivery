@@ -1,6 +1,6 @@
 
 ## Online Soup Delivery
-Online soup delivery is an application in which you can order soups to yourself or gift to others.
+Online Soup Delivery is an application in which you can order soups to yourself or gift to others.
 
 ## Built With
 - React - The web framework used.
