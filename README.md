@@ -1,7 +1,19 @@
-## `Instructions`
+
+## Online Soup Delivery
+Online soup delivery is an application in which you can order soups to yourself or gift to others.
+
+## Built With
+- React - The web framework used.
+- Node and Mongo DB - Used for backend.
+- React Redux  - The main react libary used.
+
+### `Instructions`
 1. npm run server (backend)
 2. npm install
 3. npm start
+
+## Contributor
+Fredrik Andrén
 
 Link to prototype: https://www.figma.com/proto/z8KcifJ5scXpRwVK5Uwt9y/online-soup-thing-grupp-8?node-id=160%3A302&scaling=min-zoom
 
