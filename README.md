@@ -1,4 +1,4 @@
-### Instructions 
+## `Instructions`
 1. npm run server (backend)
 2. npm install
 3. npm start
