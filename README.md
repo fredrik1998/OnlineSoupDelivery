@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Instructions 
+1. npm run server (backend)
+2. npm install
+3. npm start
+
+Link to prototype: https://www.figma.com/proto/z8KcifJ5scXpRwVK5Uwt9y/online-soup-thing-grupp-8?node-id=160%3A302&scaling=min-zoom
 
 ## Available Scripts
 
