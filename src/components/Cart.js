@@ -9,7 +9,27 @@ import { createOrder, clearOrder } from "../actions/orderActions";
 import * as ROUTES from '../routes'
 import { Link } from 'react-router-dom'
 import PaymentForm from "./Checkout";
-import DeliveryTime from "./DatePicker";
+
+
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))(Badge);
 
 class Cart extends Component {
   constructor(props) {
@@ -17,9 +37,11 @@ class Cart extends Component {
     this.state = {
       name: "",
       email: "",
+      number: "",
       address: "",
       showCheckout: false,
-      deliveryTime: ""
+      deliverytime: "",
+      option: ""
     };
   }
   handleInput = (e) => {
@@ -33,7 +55,8 @@ class Cart extends Component {
       address: this.state.address,
       cartItems: this.props.cartItems,
       total: this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0),
-      deliveryTime: this.state.deliveryTime
+      number: this.state.number,
+      option: this.state.option,
     };
     this.props.createOrder(order);
   };
@@ -44,14 +67,12 @@ class Cart extends Component {
     const { cartItems, order } = this.props;
     return (
       <div>
-        {cartItems.length === 0 ? (
-          <div className="cart cart-header">Cart is empty</div>
-        ) : (
-          <div className="cart cart-header">
-            You have {cartItems.length} in the cart{" "}
-          </div>
-        )}
-
+        <IconButton  aria-label="cart">
+      <StyledBadge className="cart cart-header" badgeContent={cartItems.length} color="secondary">
+        <ShoppingCartIcon />
+      </StyledBadge>
+    </IconButton>
+      
         {order && (
           <Modal isOpen={true} onRequestClose={this.closeModal}>
             <Zoom>
@@ -59,7 +80,7 @@ class Cart extends Component {
                 x
               </button>
               <div className="order-details">
-                <h3 className="success-message">Your order has been placed.</h3>
+                <h3 className="success-message">Thanks for your order!</h3>
                 <h2>Order {order._id}</h2>
                 <ul>
                   <li>
@@ -69,6 +90,10 @@ class Cart extends Component {
                   <li>
                     <div>Email:</div>
                     <div>{order.email}</div>
+                  </li>
+                  <li>
+                    <div>Phone Number:</div> 
+                    <div>{order.number}</div>
                   </li>
                   <li>
                     <div>Address:</div>
@@ -81,6 +106,10 @@ class Cart extends Component {
                   <li>
                     <div>Total:</div>
                     <div>{formatCurrency(order.total)}</div>
+                  </li>
+                  <li>
+                    <div>Option:</div> 
+                    <div>{order.option}</div>
                   </li>
                  
                   <li>
@@ -171,7 +200,16 @@ class Cart extends Component {
                           ></input>
                         </li>
                         <li>
-                          <label>Address</label>
+                          <label>Phone Number</label>
+                          <input className="input-field"
+                            name="number"
+                            type="number"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <label>Delivery Address</label>
                           <input className="input-field"
                             name="address"
                             type="text"
@@ -179,15 +217,30 @@ class Cart extends Component {
                             onChange={this.handleInput}
                           ></input>
                         </li>
-                        <li>
+                        <FormControl component="fieldset">
+      <FormLabel required component="legend"></FormLabel>
+      <RadioGroup aria-label="gender" name="option"  >
+        <FormControlLabel value="Gift" control={<Radio />} label="Gift"  onChange={this.handleInput}/>
+        <FormControlLabel value="For Yourself" control={<Radio />} label="For Yourself" onChange={this.handleInput} />
+      </RadioGroup>
+    </FormControl>
                         
-                            <PaymentForm></PaymentForm>
-                            <DeliveryTime 
-                              name="deliverytime"
-                              type="input"
-                            onChange={this.handleInput}>
-
-                            </DeliveryTime>
+                        <li>
+                            <PaymentForm/>
+                            <form >
+      <TextField
+        id="datetime-local"
+        name="deliverytime"
+        label="Delivery"
+        type="datetime-local"
+        defaultValue=""
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </form>
+               
+                            
                         </li>
                         <li>
                           <button className="button primary" type="submit">

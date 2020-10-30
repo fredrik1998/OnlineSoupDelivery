@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { filterProducts, sortProducts } from "../actions/productActions";
-
+import {  sortProducts } from "../actions/productActions";
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -20,8 +19,8 @@ class Filter extends Component {
           {this.props.filteredProducts.length} Products
         </div>
         <div className="filter-sort">
-          <FormControl variant="filled">
-        <InputLabel id="demo-simple-select-label">Order</InputLabel>
+          <FormControl variant="outlined">
+        <InputLabel >Order</InputLabel>
           <Select
             value={this.props.sort}
             onChange={(e) =>
@@ -52,7 +51,7 @@ export default connect(
     filteredProducts: state.products.filteredItems,
   }),
   {
-    filterProducts,
+   
     sortProducts,
   }
 )(Filter);

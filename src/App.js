@@ -11,7 +11,6 @@ const App = () => {
     <Route exact path={ROUTES.APPPAGE} component={appPage} />
     <Route path={ROUTES.ORDER} component={Order}  />
     <Route path={ROUTES.TRACK} component={Track}/>
-   
   </Router> 
   );
 }

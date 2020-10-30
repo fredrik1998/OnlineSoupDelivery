@@ -7,6 +7,11 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
 
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
  class Products extends Component {
@@ -70,33 +75,23 @@ toggleMenu() {
                 { product && (
                     <Modal
                       isOpen={true}
-                      onRequstClose={this.closeModal}>  
+                      onRequstClose={this.closeModal}
+                      className="">  
                         <Zoom>
                             <button className="close-modal" onClick={this.closeModal}>x</button>
                             <div className="product-details">
                                <img src={product.image} alt={product.title}></img>
                                <div className="product-details-description">
-                                   <p>
+                                   <h2>
                                        <strong>{product.title}</strong>
-                                   </p>
+                                   </h2>
                                    <p>
-                                       {product.description}
+                                       <strong>{product.description}</strong>
                                    </p>
-                                   
-                                   <button onClick={this.toggleMenu}
-                 className="button primary">Ingredients</button>
-
-{this.state.showIngredients && (
-    <Fade bottom cascade={true}>
-    
-        
-         <p>
-             {product.ingredients}
-         </p>
-         </Fade>
+                                      <p>   
+                                   {product.ingredients}
+                                   </p> 
        
-         
-        )}                       
                                    <div className="product-price">
                                        <div>
                                            {formatCurrency(product.price)}

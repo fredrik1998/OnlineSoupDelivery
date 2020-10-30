@@ -1,133 +1,127 @@
+import React, { Component } from 'react';
+import StarIcon from '@material-ui/icons/Star';
+import Button from '@material-ui/core/Button';
 
-import React from 'react';
-import _ from 'lodash';
+class StarChooser extends React.Component {
+  getActiveStar = value => {
+    return (this.props.stars >= value) ? " active" : "";
+  }
 
-function Star( props ){
-    return (
-      <div 
-           className={`star ${(props.value == 0) ? 'semi-active' : ''} ${(props.position <= props.rated) ? 'active' : ''} `} 
-           onMouseEnter={ props.onMouseEnter }
-           onFocus={ props.onMouseEnter }
-           onMouseLeave={ props.onMouseLeave }
-           onBlur={ props.onMouseLeave }
-           onKeyPress={props.onClick}
-           onClick={ props.onClick }
-           tabIndex={ props.tabIndex }
-           aria-label={`rate ${ props.position } star`}
-      >
-        <i className="fas fa-star"></i>
+  setStar = value => {
+    this.props._onSubmit(value);
+  }
+
+  render() {
+    return(
+      <div>
+        <div id="starfield">
+        <p>How Was Your Experience?</p>
+          <div
+            className={ `star ${this.getActiveStar(1)}` }
+            onClick={ () => this.setStar(1) }
+            >
+            <StarIcon className="svg_icons" aria-hidden="true"></StarIcon>
+          </div>
+          <div
+            className={ `star ${this.getActiveStar(2)}` }
+            onClick={ () => this.setStar(2) }
+            >
+            <StarIcon className="svg_icons" aria-hidden="true"></StarIcon>
+          </div>
+          <div
+            className={ `star ${this.getActiveStar(3)}` }
+            onClick={ () => this.setStar(3) }
+            >
+            <StarIcon className="svg_icons" aria-hidden="true"></StarIcon>
+          </div>
+          <div
+            className={ `star ${this.getActiveStar(4)}` }
+            onClick={ () => this.setStar(4) }
+            >
+            <StarIcon className="svg_icons" aria-hidden="true"></StarIcon>
+          </div>
+          <div
+            className={ `star ${this.getActiveStar(5)}` }
+            onClick={ () => this.setStar(5) }
+            >
+            <StarIcon className="svg_icons" aria-hidden="true"></StarIcon>
+          </div>
+        </div>
       </div>
     );
   }
- function Rating( props ){
-    const messages = {
-      "1": "Oh. Sorry you had a bad experience :( ",
-      "2": "We will try to improve.",
-      "3": "Appreciate it!",
-      "4": "Thank you!", 
-      "5": "You're Awesome!"
-    };
-    
-    let rating = props.rating;
-    
-    return(
-        <div className={"after-rating-message " + ((rating > 0) ? 'show': '')} >
-            <span>You rated this {rating} star{rating > 1 ? 's' : ''}</span>
-            <br/>
-            <span>{ messages[rating] }</span>
-        </div>
-    );
-  }
-   
-  class RatingWidget extends React.Component {
-    constructor( props ) {
-      super( props );
-      this.state = {
-        stars: Array(5).fill(-1),
-        rated: 0
-      };
-    }
-    
-    handleMouseOver( i ) {
-      let currentRating = this.state.rated;
-      
-      if ( currentRating > 0 ) {
-        const hoverRatedStars = this.state.stars.slice();
-        _.fill( hoverRatedStars, 0, currentRating, i );
-        this.setState({ stars: hoverRatedStars });
-      }
-      else {
-        const hoverStars = Array(5).fill(-1);
-        _.fill( hoverStars, 0, 0, (i+1) );     
-        this.setState({ stars: hoverStars});
-      }
-    }
-    
-    handleMouseOut() {
-      let currentRating = this.state.rated;
-      if ( currentRating > 0) {
-        const resetRatedStars = this.state.stars.slice();
-        _.fill( resetRatedStars, -1, currentRating, resetRatedStars.length );
-        this.setState({stars: resetRatedStars});
-      }
-      else {
-        const resetStars = this.state.stars.slice();
-        _.fill( resetStars, -1, 0, resetStars.length );
-        this.setState({stars: resetStars});
-      }
-    }
-    
-    handleClick( i ) {
-      const clickedStar = this.state.stars.slice();
-      
-      _.fill( clickedStar, 1, 0, i );
-      _.fill( clickedStar, 1, i, clickedStar.length );
-        
-      this.setState({
-        stars: clickedStar,
-        rated: i
-      });
-    }
-    
-    
-    handleRating( rating ){
-      return (<Rating rating={this.state.rated} />)
-    }
-    
-    renderStar( i ){
-      return (
-        <Star 
-          position={i}
-          value={this.state.stars[i]} 
-          rated={this.state.rated}
-          tabIndex={i}
-          onMouseEnter={ () => this.handleMouseOver(i) }
-          onMouseLeave={ () => this.handleMouseOut() }
-          onClick={ () => this.handleClick(i) }
-          />
-      );
-    }
-    
-    render(){
-      return (
-        <div className='rating-stars-widget-outer'>
-            <div className='rating-stars'>
-              {this.renderStar(1)}
-              {this.renderStar(2)}
-              {this.renderStar(3)}
-              {this.renderStar(4)}
-              {this.renderStar(5)}
-            </div>
-          
-            {this.handleRating( this.state.rated )}
-        </div>
-        
-        
-      );
+}
+
+class Commender extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      message: ""
     }
   }
 
-export default RatingWidget
-  
-  
- 
+  componentWillReceiveProps(newProps) {
+    let a = {
+      1: "Oh. Sorry you had a bad experience ",
+      2: "We will try to improve.",
+      3: "Appreciate it!",
+      4: "Thank you! ",
+      5: "You're Awesome! "
+    },
+    b = newProps.rate;
+
+    this.setState({
+      rating: b,
+      message: a[b]
+    });
+  }
+
+  render() {
+    if(this.props.rate !== 0 && this.state.message.length) {
+      return(
+        <div id="commender">
+          <p className="commender_tit">
+            You rated this { `${this.props.rate} ${(this.props.rate > 1) ? "stars" : "star"}` }
+          </p>
+          <p className="commender_tit">{ this.state.message }</p>
+          <p className="commender_tit"> What Could We Improve?</p>
+          <div className="button-container">
+          <Button variant="contained">Delivery</Button>
+          <Button variant="contained">Clarity</Button>
+          <Button variant="contained">Price</Button>
+          <Button variant="contained">Speed</Button>
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+}
+
+class Rating extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      choosedStars: 0
+    }
+  }
+
+  setStar = value => {
+    this.setState({ choosedStars: value });
+  }
+
+  render() {
+    return(
+      <div>
+        
+        <StarChooser stars={ this.state.choosedStars } _onSubmit={ this.setStar } />
+        <Commender rate={ this.state.choosedStars } />
+      </div>
+    );
+  }
+}
+
+export default Rating

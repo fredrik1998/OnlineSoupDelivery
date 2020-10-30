@@ -24,8 +24,8 @@ class Orders extends Component {
               <th>EMAIL</th>
               <th>ADDRESS</th>
               <th>ITEMS</th>
-              <th>IMAGE</th>
-              <th>DELIVERYTIME</th>
+              <th>PHONE NUMBER</th>
+              <th>OPTION</th>
             </tr>
           </thead>
           <tbody>
@@ -37,10 +37,12 @@ class Orders extends Component {
                 <td>{order.name}</td>
                 <td>{order.email}</td>
                 <td>{order.address}</td>
+                <td>{order.deliverytime}</td>
+                <td>{order.option}</td>
                 <td> 
                   {order.cartItems.map((item) => (
                     <div>
-                      {item.count} {" x "} {item.title} 
+                      {item.count} {" x "} {item.title} {item.image}
                     </div>
                   ))}
                 </td>

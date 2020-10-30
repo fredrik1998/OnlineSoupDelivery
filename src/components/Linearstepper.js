@@ -7,12 +7,10 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Check from '@material-ui/icons/Check';
 import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
+import HomeIcon from '@material-ui/icons/Home';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import StepConnector from '@material-ui/core/StepConnector';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 
 
 const useQontoStepIconStyles = makeStyles({
@@ -54,13 +52,8 @@ function QontoStepIcon(props) {
 }
 
 QontoStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
+  
   active: PropTypes.bool,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
   completed: PropTypes.bool,
 };
 
@@ -117,8 +110,8 @@ function ColorlibStepIcon(props) {
 
   const icons = {
     1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    2: <LocalShippingIcon/>,
+    3: <HomeIcon/>,
   };
 
   return (
@@ -134,17 +127,11 @@ function ColorlibStepIcon(props) {
 }
 
 ColorlibStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
+ 
   active: PropTypes.bool,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
+
   completed: PropTypes.bool,
-  /**
-   * The label displayed in the step icon.
-   */
+ 
   icon: PropTypes.node,
 };
 
@@ -165,35 +152,13 @@ function getSteps() {
   return ['Your order is being prepared', 'Your order is on its way', 'Delivered'];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-  
-    case 1:
-     
-    case 2:
-     
-    default:
-     
-  }
-}
+
 
 export default function CustomizedSteppers() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, ] = React.useState(1);
   const steps = getSteps();
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   return (
     <div className={classes.root}>
@@ -210,27 +175,12 @@ export default function CustomizedSteppers() {
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
             </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
+         
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
+            <div>   
             </div>
           </div>
         )}

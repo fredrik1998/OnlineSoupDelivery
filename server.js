@@ -58,12 +58,15 @@ const Order = mongoose.model(
       name: String,
       address: String,
       total: Number,
+      option: String,
+      number: Number,
       cartItems: [
         {
           _id: String,
           title: String,
           price: Number,
           count: Number,
+       
         
           
         },
@@ -100,4 +103,4 @@ app.delete("/api/orders/:id", async (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log("serve at http://localhost:5000"));
+app.listen(port, () => console.log(" http://localhost:5000"));

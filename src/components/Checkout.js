@@ -1,6 +1,4 @@
 import React, { Component }  from 'react';
-import { Link } from 'react-router-dom';
-import * as ROUTES from '../routes'
 
 class PaymentForm extends React.Component {
     render(){
